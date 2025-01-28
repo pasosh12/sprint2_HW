@@ -3,9 +3,14 @@
 }
 
 .hw {
-
+    font-family: Montserrat sans-serif;
+    padding: 35px 70px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
 }
 
 .hwTitle {
-
+    font-size: 22px;
+    font-weight: 600;
+    padding: 130px 0 10px 70px;
 }
