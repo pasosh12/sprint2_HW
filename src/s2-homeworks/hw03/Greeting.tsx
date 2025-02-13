@@ -1,15 +1,16 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react'
 import s from './Greeting.module.css'
 
+
 type GreetingPropsType = {
-    name: any // need to fix any
-    setNameCallback: any // need to fix any
-    addUser: any // need to fix any
-    onBlur: any // need to fix any
-    onEnter: any // need to fix any
-    error: any // need to fix any
-    totalUsers: any // need to fix any
-    lastUserName?: any // need to fix any
+    name: string
+    setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void
+    addUser: () => void
+    onBlur: () => void
+    onEnter: (e: KeyboardEvent<HTMLInputElement>) => void
+    error: string
+    totalUsers: number
+    lastUserName?: string
 }
 
 // презентационная компонента (для верстальщика)
@@ -25,10 +26,13 @@ const Greeting: React.FC<GreetingPropsType> = (
         lastUserName,
     } // деструктуризация пропсов
 ) => {
-    const inputClass = s.errorInput // need to fix with (?:)
+
+    const inputClass = !!error.length ? `${s.errorInput}` : '' // need to fix with (?:)
+
 
     return (
         <div id={'hw3-form'} className={s.greetingForm}>
+            <p>{error}</p>
             <div className={s.text}>
                 {'Людей добавили: '}
                 <span id={'hw3-users-total'}>
@@ -46,9 +50,7 @@ const Greeting: React.FC<GreetingPropsType> = (
                         onKeyDown={onEnter}
                         onBlur={onBlur}
                     />
-                    <div id={'hw3-error'} className={s.error}>
-                        {error}
-                    </div>
+
                 </div>
 
                 <button
@@ -60,12 +62,16 @@ const Greeting: React.FC<GreetingPropsType> = (
                     add
                 </button>
             </div>
+            <div id={'hw3-error'} className={s.error}>
+                {error}
+            </div>
 
             {lastUserName && (
                 <div className={s.greeting}>
                     Привет <span id={'hw3-last-user'}>{lastUserName}</span>!
                 </div>
             )}
+
         </div>
     )
 }
