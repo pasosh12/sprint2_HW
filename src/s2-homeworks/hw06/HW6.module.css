@@ -1,5 +1,13 @@
 .buttonsContainer {
+    display: inline-flex;
+    margin: 22px 0;
+    gap: 24px;
 }
 
 .editableSpanContainer {
+    color:  rgba(0, 128, 255, 1);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Montserrat;
+    text-transform: capitalize;
 }
