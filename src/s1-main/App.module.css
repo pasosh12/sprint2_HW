@@ -3,6 +3,7 @@
 }
 
 .hw {
+    width: fit-content;
     font-family: Montserrat sans-serif;
     padding: 35px 70px;
     border-bottom: 1px solid gray;
