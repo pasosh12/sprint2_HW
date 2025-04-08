@@ -1,3 +1,6 @@
 .loader {
     /*свг и/или анимация*/
+    background-image: url("https://www.svgbackgrounds.com/svg/preloaders/fade-stagger-squares.svg");
+    width: 108px;
+    height: 108px;
 }
