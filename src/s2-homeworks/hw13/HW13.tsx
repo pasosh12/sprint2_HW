@@ -13,12 +13,23 @@ import errorUnknown from './images/error.svg'
 * 2 - дизэйблить кнопки пока идёт запрос
 * 3 - сделать стили в соответствии с дизайном
 * */
-
+type errorType = {
+    response: {
+        data: {
+            errorText: string,
+            info: string,
+        }
+        status: number,
+        statusText: string,
+    },
+}
 const HW13 = () => {
     const [code, setCode] = useState('')
     const [text, setText] = useState('')
     const [info, setInfo] = useState('')
     const [image, setImage] = useState('')
+    const [buttonsDisabled, setButtonsDisabled] = useState(false)
+
 
     const send = (x?: boolean | null) => () => {
         const url =
@@ -26,23 +37,45 @@ const HW13 = () => {
                 ? 'https://xxxxxx.ccc' // имитация запроса на не корректный адрес
                 : 'https://samurai.it-incubator.io/api/3.0/homework/test'
 
-        setCode('')
-        setImage('')
-        setText('')
-        setInfo('...loading')
-
+        setButtonsDisabled(true)
         axios
             .post(url, {success: x})
             .then((res) => {
                 setCode('Код 200!')
                 setImage(success200)
-                // дописать
-
+                setText(res.data.errorText)
+                setInfo(res.data.info)
+                setButtonsDisabled(false)
             })
-            .catch((e) => {
-                // дописать
+            .catch((e: Partial<errorType>) => {
+                    if (axios.isAxiosError(e) && e?.response) {
+                        switch (e.response?.status) {
+                            case 500: {
+                                console.log(e.response)
+                                setCode(`Ошибка ${e.response.status}!`)
+                                setImage(error500)
+                                break;
+                            }
+                            case 400: {
+                                setCode(`Ошибка ${e.response.status}!`)
+                                setImage(error400)
+                                break;
+                            }
+                            default: {
+                                setImage(errorUnknown)
+                                setCode('Error!')
+                                setText(e.message)
+                                setInfo(e.name)
+                            }
+                        }
+                        setButtonsDisabled(false)
+                        setText(e.response.data.errorText)
+                        setInfo(e.response.data.info)
 
-            })
+                    }
+                }
+            )
+
     }
 
     return (
@@ -55,6 +88,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
+                        disabled={buttonsDisabled}
                         // дописать
 
                     >
@@ -64,25 +98,25 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={buttonsDisabled}
 
                     >
-                        Send false
+                        Send false 500
                     </SuperButton>
                     <SuperButton
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
-                        // дописать
+                        disabled={buttonsDisabled}
 
                     >
-                        Send undefined
+                        Send undefined 400
                     </SuperButton>
                     <SuperButton
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
-                        // дописать
+                        disabled={buttonsDisabled}
 
                     >
                         Send null

@@ -1,7 +1,21 @@
 .buttonsContainer {
+    display: flex;
+    /*flex-wrap: nowrap;*/
+    gap: 1.5rem;
+    button{
+        padding:5px;
+        display: inline-block;
+        min-width: 100px;
+        height: auto;
+    }
 }
 
 .responseContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 60px;
+    gap: 100px;
 }
 
 .imageContainer {
@@ -11,12 +25,17 @@
 }
 
 .textContainer{
+    max-width: 510px;
 }
 
 .code {
+    font-weight: bold;
+    font-size: large;
 }
 
 .text {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 .info {
 }
