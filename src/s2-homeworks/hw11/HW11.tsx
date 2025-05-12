@@ -40,6 +40,7 @@ function HW11() {
                             id={'hw11-single-slider'}
                             value={value1}
                             onChange={change}
+                            onMouseUp={()=>console.log('value1',value1,' value2',value2)}
                             // сделать так чтоб value1 изменялось // пишет студент
 
                         />
@@ -50,8 +51,9 @@ function HW11() {
                             id={'hw11-double-slider'}
                             value={[value1, value2]}
                             onChange={change}
+
                             // сделать так чтоб value1/2 изменялось // пишет студент
-                            disableSwap={true}
+                            // disableSwap={false}
                         />
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
                     </div>

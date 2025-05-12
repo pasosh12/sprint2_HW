@@ -4,9 +4,9 @@ import {Slider, SliderProps} from '@mui/material'
 const SuperRange: React.FC<SliderProps> = (props) => {
     return (
         <Slider
-            valueLabelDisplay="auto"
+            // valueLabelDisplay="auto"
             sx={{ // стили для слайдера // пишет студент
-                width: '150px',
+                width: '147px',
                 color: 'rgb(0, 204, 34)',
                 "& .MuiSlider-thumb": {
                     height: 20,
@@ -20,6 +20,12 @@ const SuperRange: React.FC<SliderProps> = (props) => {
                         borderRadius: "50%",
                         backgroundColor: "rgb(0, 204, 34)",
                         boxShadow: "none",
+                    },
+                    '& .MuiSlider-thumb::after': {
+                        display: 'block',
+                        width: '6px',
+                        height: '6px',
+                        backgroundColor: '#00CC22'
                     },
                 },
                 "& .MuiSlider-rail": {

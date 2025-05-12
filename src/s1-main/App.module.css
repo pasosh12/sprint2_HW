@@ -3,11 +3,10 @@
 }
 
 .hw {
-    width: fit-content;
     font-family: Montserrat sans-serif;
     padding: 35px 70px;
-    border-bottom: 1px solid gray;
-    border-top: 1px solid gray;
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
+    border-top: 1px solid rgba(217, 217, 217, 1);
 }
 
 .hwTitle {
